@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Bebas_Neue } from "next/font/google";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const bebas = Bebas_Neue({ weight: "400", subsets: ["latin"] });
 
@@ -135,16 +136,17 @@ const pressItems = [
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work }: { work: (typeof works)[0] }) {
   return (
-    <div className="group relative aspect-[5/4] overflow-hidden" style={{ background: "#F5EFE3" }}>
-      <div className="absolute inset-2 overflow-hidden">
-        <Image
-          src={work.image}
-          alt={work.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-      </div>
+    <div
+      className="group relative overflow-hidden"
+      style={{ aspectRatio: "4/3", backgroundColor: "#F5EFE3", display: "flex", alignItems: "center", justifyContent: "center", padding: "12px" }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={work.image}
+        alt={work.title}
+        style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.7s ease" }}
+        className="group-hover:scale-[1.03]"
+      />
 
       {work.badge && (
         <span className="absolute top-4 left-4 z-10 bg-gold px-3 py-1 font-body text-[10px] tracking-[0.18em] text-black uppercase">
@@ -182,6 +184,7 @@ function WorkCard({ work }: { work: (typeof works)[0] }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
+  const { t } = useLanguage();
   return (
     <>
       {/* ════════════════════════════════════════ HERO */}
@@ -238,13 +241,13 @@ export default function HomePage() {
                 href="/works"
                 className="inline-flex items-center bg-gold px-8 py-3.5 font-body text-[11px] tracking-[0.22em] text-black transition-colors duration-200 hover:bg-gold-lt"
               >
-                Discover Works
+                {t.discoverWorks}
               </Link>
               <Link
                 href="/about"
                 className="inline-flex items-center border border-white-warm/20 px-8 py-3.5 font-body text-[11px] tracking-[0.22em] text-white-warm/70 transition-colors duration-200 hover:border-gold hover:text-gold"
               >
-                About
+                {t.about}
               </Link>
             </div>
           </Reveal>
