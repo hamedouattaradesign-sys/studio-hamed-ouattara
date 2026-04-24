@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -275,12 +276,26 @@ function Reveal({
 
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work, index }: { work: Work; index: number }) {
-  const [lightbox, setLightbox]     = useState(false);
-  const [activeIdx, setActiveIdx]   = useState(0);
+  const [lightbox, setLightbox]   = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
   const allImages = [work.image, ...(work.images ?? [])];
 
-  const openLightbox = (i = 0) => { setActiveIdx(i); setLightbox(true); };
-  const closeLightbox = () => setLightbox(false);
+  const open  = (i = 0) => { setActiveIdx(i); setLightbox(true); };
+  const close = ()      => setLightbox(false);
+  const prev  = ()      => setActiveIdx((i) => (i - 1 + allImages.length) % allImages.length);
+  const next  = ()      => setActiveIdx((i) => (i + 1) % allImages.length);
+
+  // Escape key + body scroll lock
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
 
   return (
     <Reveal delay={(index % 3) * 80}>
@@ -290,7 +305,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
         <div
           className="relative aspect-[4/3] cursor-zoom-in overflow-hidden"
           style={{ background: "#F5EFE3" }}
-          onClick={() => openLightbox(0)}
+          onClick={() => open(0)}
         >
           <Image
             src={work.image}
@@ -304,11 +319,9 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
               {work.badge}
             </span>
           )}
-          {/* View hint */}
           <span className="absolute bottom-3 right-3 z-10 bg-black/55 px-2.5 py-1 font-body text-[9px] tracking-[0.18em] text-white-warm uppercase opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             View
           </span>
-          {/* Multi-image indicator */}
           {allImages.length > 1 && (
             <span className="absolute bottom-3 left-3 z-10 bg-black/55 px-2 py-1 font-body text-[9px] text-white-warm">
               1 / {allImages.length}
@@ -324,16 +337,10 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           <h3 className="font-display text-[1.05rem] font-semibold leading-snug text-black transition-colors duration-200 group-hover:text-gold">
             {work.title}
           </h3>
-          <p className="mt-1 font-body text-[11px] leading-relaxed text-mid">
-            {work.medium}
-          </p>
-          <p className="mt-0.5 font-body text-[10px] text-mid/55">
-            {work.reference}
-          </p>
+          <p className="mt-1 font-body text-[11px] leading-relaxed text-mid">{work.medium}</p>
+          <p className="mt-0.5 font-body text-[10px] text-mid/55">{work.reference}</p>
           <div className="mt-4 flex items-center justify-between border-t border-black/8 pt-4">
-            <span className="font-display text-[1.05rem] font-semibold text-black">
-              {work.price}
-            </span>
+            <span className="font-display text-[1.05rem] font-semibold text-black">{work.price}</span>
             <a
               href={work.href}
               target="_blank"
@@ -346,80 +353,107 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
         </div>
       </article>
 
-      {/* ── Lightbox ── */}
-      {lightbox && (
+      {/* ── Lightbox — portal into document.body so z-index is never trapped ── */}
+      {lightbox && createPortal(
         <div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/92 px-4 py-8 backdrop-blur-sm"
-          onClick={closeLightbox}
+          style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(8,7,6,0.94)" }}
+          onClick={close}
         >
+          {/* X — fixed top-right, always visible */}
+          <button
+            onClick={close}
+            aria-label="Close"
+            style={{ position: "absolute", top: "1rem", right: "1rem", zIndex: 10000 }}
+            className="flex h-11 w-11 items-center justify-center bg-white/10 text-white text-2xl leading-none transition-colors hover:bg-white/25"
+          >
+            ✕
+          </button>
+
+          {/* Inner content — clicks here don't bubble to overlay */}
           <div
-            className="relative flex w-full max-w-4xl flex-col items-center"
+            className="flex h-full flex-col items-center justify-center gap-4 px-6 py-20"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
-            <button
-              onClick={closeLightbox}
-              className="absolute -top-8 right-0 flex items-center gap-1.5 font-body text-[10px] tracking-[0.22em] text-white-warm/60 uppercase transition-colors hover:text-white-warm"
-            >
-              Close <span className="text-base leading-none">✕</span>
-            </button>
+            {/* Counter */}
+            <p className="font-body text-[10px] tracking-[0.28em] text-white/40 uppercase">
+              {activeIdx + 1} / {allImages.length}
+            </p>
 
-            {/* Main image */}
-            <div className="relative h-[55vh] w-full" style={{ background: "#F5EFE3" }}>
-              <Image
-                src={allImages[activeIdx]}
-                alt={`${work.title} — view ${activeIdx + 1}`}
-                fill
-                sizes="90vw"
-                className="object-contain"
-                priority
-              />
+            {/* Image row with arrows */}
+            <div className="relative flex w-full max-w-3xl items-center gap-3">
+              {/* Prev */}
+              {allImages.length > 1 && (
+                <button
+                  onClick={prev}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center bg-white/10 text-white text-lg transition-colors hover:bg-white/20"
+                  aria-label="Previous image"
+                >
+                  ←
+                </button>
+              )}
+
+              {/* Main image */}
+              <div
+                className="relative flex-1"
+                style={{ height: "58vh", background: "#F5EFE3" }}
+              >
+                <Image
+                  src={allImages[activeIdx]}
+                  alt={`${work.title} — view ${activeIdx + 1}`}
+                  fill
+                  sizes="80vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Next */}
+              {allImages.length > 1 && (
+                <button
+                  onClick={next}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center bg-white/10 text-white text-lg transition-colors hover:bg-white/20"
+                  aria-label="Next image"
+                >
+                  →
+                </button>
+              )}
             </div>
 
             {/* Thumbnail strip */}
             {allImages.length > 1 && (
-              <div className="mt-4 flex gap-2">
+              <div className="flex gap-2">
                 {allImages.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveIdx(i)}
-                    className={`relative h-16 w-16 overflow-hidden border-2 transition-colors duration-200 ${
-                      i === activeIdx ? "border-gold" : "border-white-warm/20 hover:border-white-warm/50"
-                    }`}
                     style={{ background: "#F5EFE3" }}
+                    className={`relative h-14 w-14 overflow-hidden border-2 transition-colors duration-200 ${
+                      i === activeIdx ? "border-[#C8973A]" : "border-white/15 hover:border-white/40"
+                    }`}
                   >
-                    <Image
-                      src={img}
-                      alt={`Thumbnail ${i + 1}`}
-                      fill
-                      sizes="64px"
-                      className="object-contain"
-                    />
+                    <Image src={img} alt={`View ${i + 1}`} fill sizes="56px" className="object-contain" />
                   </button>
                 ))}
               </div>
             )}
 
             {/* Caption */}
-            <div className="mt-5 text-center">
-              <p className="font-display text-xl font-semibold text-white-warm">
-                {work.title}
-              </p>
-              <p className="mt-1 font-body text-[12px] text-white-warm/45">
-                {work.medium}
-              </p>
-              <p className="mt-3 font-display text-lg text-gold">{work.price}</p>
+            <div className="text-center">
+              <p className="font-display text-xl font-semibold text-white">{work.title}</p>
+              <p className="mt-1 font-body text-[11px] text-white/40">{work.medium}</p>
+              <p className="mt-2 font-display text-base text-[#C8973A]">{work.price}</p>
               <a
                 href={work.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center bg-gold px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors duration-200 hover:bg-gold-lt"
+                className="mt-4 inline-flex items-center bg-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors hover:bg-[#E0B96A]"
               >
                 Acquire
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </Reveal>
   );
