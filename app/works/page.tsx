@@ -29,7 +29,7 @@ const bolibana: Work[] = [
     price:      "$38,000",
     image:      `${BASE}/Ouattara_Dioulassoba_Dioula_s_Town_02_sm.jpg`,
     badge:      "Brooklyn Museum · 2023.66",
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/dioulassoba-cabinet-bolibana-hamed-ouattara",
   },
   {
     title:      "Ancestor",
@@ -39,7 +39,7 @@ const bolibana: Work[] = [
     price:      "$45,000",
     image:      `${BASE}/Ouattara_Ancestors_01_sm.jpg`,
     badge:      "Homo Faber 2026",
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/ancestor-cabinet-bolibana-hamed-ouattara",
   },
   {
     title:      "Budu",
@@ -48,7 +48,7 @@ const bolibana: Work[] = [
     reference:  "Bolibana Series, 2022",
     price:      "$32,000",
     image:      `${BASE}/Ouattara_Budu_Ethnicity_01_sm.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/budu-cabinet-bolibana-hamed-ouattara",
   },
   {
     title:      "Balan",
@@ -57,7 +57,7 @@ const bolibana: Work[] = [
     reference:  "Bolibana Series, 2022",
     price:      "$35,000",
     image:      `${BASE}/Ouattara_Balan_African_Piano_Balafon_01_sm.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/balan-sideboard-bolibana-hamed-ouattara",
   },
   {
     title:      "Dugu",
@@ -66,7 +66,7 @@ const bolibana: Work[] = [
     reference:  "Bolibana Series, 2023",
     price:      "$35,000",
     image:      `${BASE}/6B82881B-822B-4F90-8A94-B5F5FF4CE85D.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/dugu-cabinet-bolibana-hamed-ouattara",
   },
   {
     title:      "Jimena",
@@ -75,7 +75,7 @@ const bolibana: Work[] = [
     reference:  "Bolibana Series, 2023",
     price:      "$22,000",
     image:      `${BASE}/JIMENA85X40X130cm.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/jimena-cabinet-bolibana-hamed-ouattara",
   },
 ];
 
@@ -87,7 +87,7 @@ const furniture: Work[] = [
     reference:  "Studio Edition, 2024",
     price:      "$15,500",
     image:      `${BASE}/8DB5823B-6FAF-4395-AD85-E066082E3880.png`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/mariama-storage-cabinet",
   },
   {
     title:      "Luxe TV",
@@ -96,7 +96,7 @@ const furniture: Work[] = [
     reference:  "Studio Edition, 2024",
     price:      "$12,000",
     image:      `${BASE}/2A1B931F-6941-4E0C-A1F9-36F89073948F_1.png`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/luxe-tv-sculptural-storage-console-in-recycled-oil-drum-metal",
   },
   {
     title:      "Cabinet Ouaga",
@@ -105,7 +105,7 @@ const furniture: Work[] = [
     reference:  "Studio Edition, 2023",
     price:      "$9,500",
     image:      `${BASE}/31BA693E-28AB-4093-BE9B-A01003F2F9162.png`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/cabinet-ouaga",
   },
   {
     title:      "Dlani Red / Yellow",
@@ -114,7 +114,7 @@ const furniture: Work[] = [
     reference:  "Dlani Series, 2024",
     price:      "$2,200",
     image:      `${BASE}/IMG_2647.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/dlani-upcycled-barrel-storage",
   },
   {
     title:      "Dlani Blue / Green",
@@ -123,7 +123,7 @@ const furniture: Work[] = [
     reference:  "Dlani Series, 2024",
     price:      "$2,200",
     image:      `${BASE}/IMG_2650.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/dlani",
   },
 ];
 
@@ -135,7 +135,7 @@ const canvas: Work[] = [
     reference:  "Urban Series, 2023",
     price:      "$6,500",
     image:      `${BASE}/cohesion150x150cm.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/urban-rituals",
   },
   {
     title:      "Whispers from the Sky",
@@ -144,7 +144,7 @@ const canvas: Work[] = [
     reference:  "Sky Series, 2023",
     price:      "$6,500",
     image:      `${BASE}/IMG_2205_SnapseedCopy.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/whispers-from-the-sky",
   },
   {
     title:      "Ghost Archive",
@@ -153,7 +153,7 @@ const canvas: Work[] = [
     reference:  "Archive Series, 2023",
     price:      "$6,500",
     image:      `${BASE}/IMG_9586.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/ghost-archive",
   },
   {
     title:      "Council of Faces",
@@ -162,7 +162,7 @@ const canvas: Work[] = [
     reference:  "Council Series, 2022",
     price:      "$5,500",
     image:      `${BASE}/35x70inc.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/council-of-faces",
   },
   {
     title:      "Bobo Dioulasso",
@@ -171,7 +171,7 @@ const canvas: Work[] = [
     reference:  "City Series, 2022",
     price:      "$5,500",
     image:      `${BASE}/BOBO60X45IN.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/bobo-dioulasso",
   },
   {
     title:      "Sacred Patterns",
@@ -180,7 +180,7 @@ const canvas: Work[] = [
     reference:  "Pattern Series, 2022",
     price:      "$4,500",
     image:      `${BASE}/100x100cm.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/sacred-patterns",
   },
   {
     title:      "Backwards Future",
@@ -189,7 +189,7 @@ const canvas: Work[] = [
     reference:  "Future Series, 2023",
     price:      "$4,500",
     image:      `${BASE}/IMG_2236_SnapseedCopy.jpg`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/backwards-future",
   },
   {
     title:      "Flame of the Ancestors",
@@ -198,7 +198,7 @@ const canvas: Work[] = [
     reference:  "Ancestors Series, 2021",
     price:      "$2,500",
     image:      `${BASE}/IMG_2070.png`,
-    href:       SHOP,
+    href:       "https://studiohamedouattara.com/products/flame-of-the-ancestors",
   },
 ];
 

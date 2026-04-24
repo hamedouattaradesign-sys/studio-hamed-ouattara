@@ -83,7 +83,7 @@ const works = [
     price:      "$38,000",
     image:      `${BASE}/cdn/shop/files/Ouattara_Dioulassoba_Dioula_s_Town_02_sm.jpg`,
     badge:      "Brooklyn Museum",
-    href:       BASE,
+    href:       "https://studiohamedouattara.com/products/dioulassoba-cabinet-bolibana-hamed-ouattara",
   },
   {
     collection: "Ancestors",
@@ -92,7 +92,7 @@ const works = [
     price:      "$45,000",
     image:      `${BASE}/cdn/shop/files/Ouattara_Ancestors_01_sm.jpg`,
     badge:      "Homo Faber 2026",
-    href:       BASE,
+    href:       "https://studiohamedouattara.com/products/ancestor-cabinet-bolibana-hamed-ouattara",
   },
   {
     collection: "Budu",
@@ -101,7 +101,7 @@ const works = [
     price:      "$32,000",
     image:      `${BASE}/cdn/shop/files/Ouattara_Budu_Ethnicity_01_sm.jpg`,
     badge:      null,
-    href:       BASE,
+    href:       "https://studiohamedouattara.com/products/budu-cabinet-bolibana-hamed-ouattara",
   },
   {
     collection: "Urban Rituals",
@@ -110,7 +110,7 @@ const works = [
     price:      "$6,500",
     image:      `${BASE}/cdn/shop/files/cohesion150x150cm.jpg`,
     badge:      null,
-    href:       BASE,
+    href:       "https://studiohamedouattara.com/products/urban-rituals",
   },
   {
     collection: "Mariama",
@@ -119,7 +119,7 @@ const works = [
     price:      "$15,500",
     image:      `${BASE}/cdn/shop/files/8DB5823B-6FAF-4395-AD85-E066082E3880.png`,
     badge:      null,
-    href:       BASE,
+    href:       "https://studiohamedouattara.com/products/mariama-storage-cabinet",
   },
 ];
 
