@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // ─── Scroll-reveal ────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.1) {
@@ -100,6 +101,7 @@ const TEXTURE = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function AboutPage() {
+  const { t } = useLanguage();
   return (
     <>
       {/* ════════════════════════════ HERO */}
@@ -211,7 +213,7 @@ export default function AboutPage() {
               </blockquote>
 
               <p className="mb-5 font-body text-[10px] tracking-[0.25em] text-gold uppercase">
-                Permanent Collections
+                {t.permanentCollections}
               </p>
               <ul className="space-y-4">
                 {collections.map(({ name, city }) => (
@@ -244,10 +246,10 @@ export default function AboutPage() {
       <section className="bg-black px-6 py-24 md:px-14">
         <Reveal className="mb-16">
           <p className="mb-3 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-            Chronology
+            {t.chronologyLabel}
           </p>
           <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-white-warm">
-            A Life in Practice
+            {t.timelineTitle}
           </h2>
         </Reveal>
 
@@ -282,10 +284,10 @@ export default function AboutPage() {
       <section className="bg-cream px-6 py-24 md:px-14">
         <Reveal className="mb-16">
           <p className="mb-3 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-            The Atelier
+            {t.atelierLabel}
           </p>
           <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-black">
-            Studio SHO
+            {t.studioTitle}
           </h2>
         </Reveal>
 
@@ -338,7 +340,7 @@ export default function AboutPage() {
           {/* Left — title + details */}
           <Reveal>
             <p className="mb-5 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-              Future Vision
+              {t.futureVisionLabel}
             </p>
             <h2
               className="font-display font-bold leading-[1.0] text-white-warm"
@@ -373,7 +375,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="mt-10 inline-flex items-center border border-gold px-8 py-3 font-body text-[11px] tracking-[0.2em] text-gold transition-colors duration-200 hover:bg-gold hover:text-black"
             >
-              Discover the Vision ↗
+              {t.discoverVision}
             </a>
           </Reveal>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // ─── Scroll-reveal ────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.08) {
@@ -209,6 +210,7 @@ const TEXTURE = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 // ─── Press Card ───────────────────────────────────────────────────────────────
 function PressCard({ item, index }: { item: PressItem; index: number }) {
+  const { t } = useLanguage();
   const styles = CAT_STYLES[item.category];
   return (
     <Reveal delay={(index % 3) * 70}>
@@ -246,7 +248,7 @@ function PressCard({ item, index }: { item: PressItem; index: number }) {
             rel="noopener noreferrer"
             className="mt-5 inline-flex items-center gap-1.5 font-body text-[10px] tracking-[0.18em] text-gold uppercase transition-opacity duration-200 hover:opacity-70"
           >
-            Read more ↗
+            {t.readMore}
           </a>
         )}
       </article>
@@ -256,7 +258,8 @@ function PressCard({ item, index }: { item: PressItem; index: number }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function PressPage() {
-  const [active, setActive] = useState<Filter>("All");
+  const { t }                 = useLanguage();
+  const [active, setActive]   = useState<Filter>("All");
   const [visible, setVisible] = useState(items);
 
   useEffect(() => {
@@ -293,21 +296,19 @@ export default function PressPage() {
                 className="block font-bold text-white-warm"
                 style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}
               >
-                Press &amp;
+                {t.pressTitleMain}
               </span>
               <span
                 className="block italic font-medium text-gold"
                 style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)" }}
               >
-                Recognition
+                {t.pressTitleItalic}
               </span>
             </h1>
           </Reveal>
           <Reveal delay={140}>
             <p className="font-body text-[14px] leading-[1.85] text-white-warm/50">
-              Publications, institutional acquisitions, exhibitions and awards — a record
-              of international recognition spanning two decades of practice rooted in
-              Ouagadougou, Burkina Faso.
+              {t.pressPageDesc}
             </p>
           </Reveal>
         </div>
@@ -349,9 +350,9 @@ export default function PressPage() {
         {/* Count + active filter label */}
         <Reveal className="mb-10">
           <p className="font-body text-[11px] tracking-[0.2em] text-mid/50">
-            Showing{" "}
+            {t.showingLabel}{" "}
             <span className="text-gold">{visible.length}</span>{" "}
-            {active === "All" ? "records" : active.toLowerCase()}
+            {active === "All" ? t.records : active.toLowerCase()}
           </p>
         </Reveal>
 
@@ -382,20 +383,20 @@ export default function PressPage() {
           {/* Left — title + description */}
           <Reveal>
             <p className="mb-5 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-              Media Resources
+              {t.mediaResourcesLabel}
             </p>
             <h2 className="mb-6 font-display leading-tight">
               <span
                 className="block font-bold text-white-warm"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)" }}
               >
-                Press Kit &amp;
+                {t.pressKitMain}
               </span>
               <span
                 className="block italic text-gold"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)" }}
               >
-                Media Assets
+                {t.pressKitItalic}
               </span>
             </h2>
             <p className="mb-4 font-body text-[14px] leading-[1.85] text-white-warm/55">

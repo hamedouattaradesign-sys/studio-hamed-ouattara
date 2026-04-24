@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // ─── Scroll-reveal ────────────────────────────────────────────────────────────
 function useReveal(threshold = 0.1) {
@@ -128,6 +129,7 @@ function validate(f: FormState): Errors {
 }
 
 function ContactForm() {
+  const { t }           = useLanguage();
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName:  "",
@@ -253,7 +255,7 @@ function ContactForm() {
         disabled={status === "sending"}
         className="w-full bg-gold py-4 font-body text-[11px] tracking-[0.25em] text-black uppercase transition-colors duration-200 hover:bg-gold-lt disabled:opacity-60"
       >
-        {status === "sending" ? "Opening mail client…" : "Send Message"}
+        {status === "sending" ? "…" : t.sendMessage}
       </button>
 
       <p className="font-body text-[10px] text-mid/45 text-center">
@@ -290,6 +292,7 @@ function LocationCard({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ContactPage() {
+  const { t } = useLanguage();
   return (
     <>
       {/* ════════════════════════════ HERO */}
@@ -312,30 +315,28 @@ export default function ContactPage() {
               <h1 className="mb-8 font-display leading-[1.0]">
                 <span className="block font-bold text-white-warm"
                   style={{ fontSize: "clamp(3rem, 7.5vw, 5.5rem)" }}>
-                  Get in
+                  {t.contactTitleMain}
                 </span>
                 <span className="block italic font-medium text-gold"
                   style={{ fontSize: "clamp(3rem, 7.5vw, 5.5rem)" }}>
-                  Touch
+                  {t.contactTitleItalic}
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={140}>
               <p className="mb-12 max-w-md font-body text-[14px] leading-[1.85] text-white-warm/55">
-                For acquisition inquiries, institutional collaborations, press requests,
-                or any question about the work — the studio team is available from
-                Ouagadougou and Atlanta.
+                {t.contactDesc}
               </p>
             </Reveal>
 
             <Reveal delay={210}>
               <div className="border-t border-gold/20 pt-8">
                 <p className="mb-4 font-body text-[10px] tracking-[0.22em] text-gold uppercase">
-                  Response time
+                  {t.responseTimeLabel}
                 </p>
                 <p className="font-body text-[13px] text-white-warm/50">
-                  We respond to all inquiries within 48 hours.
+                  {t.responseTimeDesc}
                 </p>
               </div>
             </Reveal>
@@ -439,11 +440,11 @@ export default function ContactPage() {
             <h2 className="mb-8 font-display leading-[1.05]">
               <span className="block font-bold text-white-warm"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-                Let's start a
+                {t.formTitleMain}
               </span>
               <span className="block italic text-gold"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-                conversation
+                {t.formTitleItalic}
               </span>
             </h2>
             <p className="mb-10 font-body text-[13px] leading-[1.8] text-white-warm/50">
@@ -481,10 +482,10 @@ export default function ContactPage() {
       <section className="bg-cream px-6 py-24 md:px-14">
         <Reveal className="mb-14">
           <p className="mb-3 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-            Where to find us
+            {t.whereToFindUs}
           </p>
           <h2 className="font-display text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold text-black">
-            Locations
+            {t.locationsTitle}
           </h2>
         </Reveal>
 

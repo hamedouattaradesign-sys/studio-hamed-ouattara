@@ -195,7 +195,7 @@ export default function HomePage() {
 
           <Reveal>
             <p className="mb-8 font-body text-[11px] tracking-[0.3em] text-gold uppercase">
-              Bobo-Dioulasso · Burkina Faso
+              {t.heroEyebrow}
             </p>
           </Reveal>
 
@@ -219,7 +219,7 @@ export default function HomePage() {
 
           <Reveal delay={140}>
             <p className="font-body text-[11px] tracking-[0.22em] text-white-warm/50 uppercase">
-              Multidisciplinary Artist &amp; Designer
+              {t.heroRole}
             </p>
             {/* Divider */}
             <div className="my-8 w-14 border-t border-gold/40" />
@@ -227,11 +227,7 @@ export default function HomePage() {
 
           <Reveal delay={210}>
             <p className="mb-12 max-w-[460px] font-body text-[14.5px] leading-[1.85] text-white-warm/60">
-              Working from Bobo-Dioulasso, Hamed Ouattara upcycles discarded oil
-              drums into Afrofuturist sculptural furniture — forms that carry the
-              geometric memory of Sudano-Sahelian architecture into the present.
-              Each object is produced with a team of fifteen local artisans,
-              bridging ancestral craft and contemporary art.
+              {t.heroDesc}
             </p>
           </Reveal>
 
@@ -258,7 +254,7 @@ export default function HomePage() {
 
           <Reveal>
             <p className="mb-7 font-body text-[10px] tracking-[0.25em] text-mid/70 uppercase">
-              Institutional Collections
+              {t.collectionsLabel}
             </p>
             <ul className="space-y-5">
               {museums.map(({ name, city }) => (
@@ -311,20 +307,20 @@ export default function HomePage() {
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-3 font-body text-[10px] tracking-[0.25em] text-gold uppercase">
-                Portfolio
+                {t.portfolioLabel}
               </p>
               <h2 className="font-display text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-tight text-black">
-                Selected Works
+                {t.worksTitle}
               </h2>
               <p className="mt-3 font-body text-[13px] tracking-wide text-mid">
-                Upcycled industrial objects as cultural form
+                {t.worksSubtitle}
               </p>
             </div>
             <Link
               href="/works"
               className="hidden md:inline-flex items-center gap-2 border border-black/12 px-6 py-2.5 font-body text-[11px] tracking-[0.18em] text-mid transition-colors duration-200 hover:border-gold hover:text-gold"
             >
-              View All Works ↗
+              {t.viewAllWorks}
             </Link>
           </div>
         </Reveal>
@@ -354,7 +350,7 @@ export default function HomePage() {
       <Reveal>
         <section className="bg-gold px-6 py-20 text-center md:px-14">
           <p className="mb-5 font-body text-[10px] tracking-[0.35em] text-black/50 uppercase">
-            Current Exhibition
+            {t.currentExhibition}
           </p>
           <h2
             className={`${bebas.className} leading-none tracking-wide text-black`}
@@ -402,7 +398,7 @@ export default function HomePage() {
           <Reveal delay={160}>
             <div className="border-l border-gold/20 pl-10 md:pt-2">
               <p className="mb-7 font-body text-[10px] tracking-[0.25em] text-gold uppercase">
-                Biography
+                {t.biographyLabel}
               </p>
               <p className="mb-5 font-body text-[14px] leading-[1.85] text-white-warm/60">
                 Hamed Ouattara (b. 1979, Bobo-Dioulasso, Burkina Faso) transforms
@@ -420,7 +416,7 @@ export default function HomePage() {
                 href="/about"
                 className="inline-flex items-center gap-2 border-b border-gold/25 pb-px font-body text-[11px] tracking-[0.22em] text-gold uppercase transition-colors duration-200 hover:border-gold"
               >
-                Full Biography →
+                {t.fullBio}
               </Link>
             </div>
           </Reveal>
@@ -433,10 +429,10 @@ export default function HomePage() {
         <Reveal className="mb-14">
           <div className="text-center">
             <p className="mb-3 font-body text-[10px] tracking-[0.25em] text-gold uppercase">
-              Recognition
+              {t.recognitionLabel}
             </p>
             <h2 className="font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-bold text-black">
-              Press &amp; Institutions
+              {t.pressAndInstitutions}
             </h2>
           </div>
         </Reveal>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const BASE = "https://studiohamedouattara.com/cdn/shop/files";
@@ -276,6 +277,7 @@ function Reveal({
 
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work, index }: { work: Work; index: number }) {
+  const { t }                     = useLanguage();
   const [lightbox, setLightbox]   = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
   const allImages = [work.image, ...(work.images ?? [])];
@@ -347,7 +349,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
               rel="noopener noreferrer"
               className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
             >
-              Acquire
+              {t.acquire}
             </a>
           </div>
         </div>
@@ -461,6 +463,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function WorksPage() {
+  const { t }               = useLanguage();
   const [active, setActive] = useState("bolibana");
 
   // Update active tab as user scrolls through sections
@@ -499,7 +502,7 @@ export default function WorksPage() {
         <div className="relative z-10">
           <Reveal>
             <p className="mb-10 font-body text-[10px] tracking-[0.32em] text-gold/60 uppercase">
-              Studio Hamed Ouattara &nbsp;·&nbsp; Works
+              {t.worksPageEyebrow}
             </p>
           </Reveal>
 
@@ -509,13 +512,13 @@ export default function WorksPage() {
                 className="block font-bold text-white-warm"
                 style={{ fontSize: "clamp(3.2rem, 8vw, 6rem)" }}
               >
-                Selected
+                {t.worksTitle.split(" ").slice(0, -1).join(" ") || t.worksTitle}
               </span>
               <span
                 className="block italic font-medium text-gold"
                 style={{ fontSize: "clamp(3.2rem, 8vw, 6rem)" }}
               >
-                Works
+                {t.worksTitle.split(" ").slice(-1)[0]}
               </span>
             </h1>
           </Reveal>
@@ -524,7 +527,7 @@ export default function WorksPage() {
             <div className="mt-8 flex items-center gap-4">
               <div className="h-px w-10 bg-gold/40" />
               <p className="font-body text-[12px] tracking-[0.15em] text-white-warm/40">
-                19 works across 3 collections
+                {t.worksPageCount}
               </p>
             </div>
           </Reveal>
@@ -563,56 +566,58 @@ export default function WorksPage() {
       </div>
 
       {/* ════════════════════════════ WORK SECTIONS */}
-      {sections.map(({ id, label, count, works, description }) => (
-        <section
-          key={id}
-          id={id}
-          className="bg-white-warm px-6 py-20 md:px-14"
-        >
-          {/* Section header */}
-          <Reveal className="mb-12">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="mb-2 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-                  {count} Works
-                </p>
-                <h2 className="font-display text-[clamp(1.6rem,3.5vw,2.5rem)] font-bold leading-tight text-black">
-                  {label}
-                </h2>
-                <p className="mt-3 max-w-xl font-body text-[13px] leading-[1.75] text-mid">
-                  {description}
-                </p>
+      {sections.map(({ id, count, works }) => {
+        const sectionLabel = id === "bolibana" ? t.bolibanaLabel : id === "furniture" ? t.furnitureLabel : t.canvasLabel;
+        const sectionDesc  = id === "bolibana" ? t.bolibanaDesc  : id === "furniture" ? t.furnitureDesc  : t.canvasDesc;
+        return (
+          <section
+            key={id}
+            id={id}
+            className="bg-white-warm px-6 py-20 md:px-14"
+          >
+            {/* Section header */}
+            <Reveal className="mb-12">
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="mb-2 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
+                    {count} Works
+                  </p>
+                  <h2 className="font-display text-[clamp(1.6rem,3.5vw,2.5rem)] font-bold leading-tight text-black">
+                    {sectionLabel}
+                  </h2>
+                  <p className="mt-3 max-w-xl font-body text-[13px] leading-[1.75] text-mid">
+                    {sectionDesc}
+                  </p>
+                </div>
+                <div className="hidden h-px w-24 bg-gold/30 md:block" />
               </div>
-              {/* Gold rule accent */}
-              <div className="hidden h-px w-24 bg-gold/30 md:block" />
+            </Reveal>
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
+              {works.map((work, i) => (
+                <WorkCard key={work.title} work={work} index={i} />
+              ))}
             </div>
-          </Reveal>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 gap-x-6 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
-            {works.map((work, i) => (
-              <WorkCard key={work.title} work={work} index={i} />
-            ))}
-          </div>
-
-          {/* Section divider */}
-          <div className="mt-20 border-t border-black/8" />
-        </section>
-      ))}
+            <div className="mt-20 border-t border-black/8" />
+          </section>
+        );
+      })}
 
       {/* ════════════════════════════ FOOTER CTA */}
       <div className="bg-black px-6 py-16 text-center md:px-14">
         <p className="mb-3 font-body text-[10px] tracking-[0.28em] text-gold uppercase">
-          Enquiries
+          {t.enquiriesLabel}
         </p>
         <p className="mb-8 font-body text-[13px] leading-relaxed text-white-warm/50">
-          For acquisition, institutional loans, or studio visits, please get in touch.
+          {t.enquiriesDesc}
         </p>
         <a
           href="/contact"
           className="inline-flex items-center border border-gold px-8 py-3 font-body text-[11px] tracking-[0.2em] text-gold transition-colors duration-200 hover:bg-gold hover:text-black"
         >
-          Contact the Studio
+          {t.contactStudio}
         </a>
       </div>
     </>
