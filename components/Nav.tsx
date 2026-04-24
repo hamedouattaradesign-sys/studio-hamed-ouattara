@@ -65,14 +65,12 @@ export default function Nav() {
             ))}
           </div>
 
-          {/* Shop */}
+          {/* Collection */}
           <a
-            href="https://studiohamedouattara.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/works"
             className="inline-flex items-center gap-1 border border-gold px-5 py-2 font-body text-sm tracking-widest text-gold transition-colors duration-200 hover:bg-gold hover:text-white-warm"
           >
-            {t.shop}
+            Collection
           </a>
         </div>
 
@@ -127,12 +125,10 @@ export default function Nav() {
               ))}
             </div>
             <a
-              href="https://studiohamedouattara.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/works"
               className="inline-flex items-center border border-gold px-5 py-2 font-body text-sm tracking-widest text-gold hover:bg-gold hover:text-white-warm transition-colors duration-200"
             >
-              {t.shop}
+              Collection
             </a>
           </li>
         </ul>
