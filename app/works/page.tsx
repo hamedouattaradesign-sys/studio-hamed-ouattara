@@ -15,6 +15,7 @@ type Work = {
   reference: string;
   price: string;
   image: string;
+  images?: string[];
   badge?: string;
   href: string;
 };
@@ -28,6 +29,7 @@ const bolibana: Work[] = [
     reference:  "Brooklyn Museum · Acc. 2023.66",
     price:      "$38,000",
     image:      `${BASE}/Ouattara_Dioulassoba_Dioula_s_Town_02_sm.jpg`,
+    images:     [`${BASE}/Ouattara_Dioulassoba_Dioula_s_Town_01.jpg`, `${BASE}/Ouattara_Dioulassoba_Dioula_s_Town_04.jpg`],
     badge:      "Brooklyn Museum · 2023.66",
     href:       "https://studiohamedouattara.com/products/dioulassoba-cabinet-bolibana-hamed-ouattara",
   },
@@ -38,6 +40,7 @@ const bolibana: Work[] = [
     reference:  "Homo Faber 2026, Venice",
     price:      "$45,000",
     image:      `${BASE}/Ouattara_Ancestors_01_sm.jpg`,
+    images:     [`${BASE}/Ouattara_Ancestors_02_sm.jpg`],
     badge:      "Homo Faber 2026",
     href:       "https://studiohamedouattara.com/products/ancestor-cabinet-bolibana-hamed-ouattara",
   },
@@ -48,6 +51,7 @@ const bolibana: Work[] = [
     reference:  "Bolibana Series, 2022",
     price:      "$32,000",
     image:      `${BASE}/Ouattara_Budu_Ethnicity_01_sm.jpg`,
+    images:     [`${BASE}/Ouattara_Budu_Ethnicity_02_sm.jpg`],
     href:       "https://studiohamedouattara.com/products/budu-cabinet-bolibana-hamed-ouattara",
   },
   {
@@ -271,27 +275,45 @@ function Reveal({
 
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work, index }: { work: Work; index: number }) {
+  const [lightbox, setLightbox]     = useState(false);
+  const [activeIdx, setActiveIdx]   = useState(0);
+  const allImages = [work.image, ...(work.images ?? [])];
+
+  const openLightbox = (i = 0) => { setActiveIdx(i); setLightbox(true); };
+  const closeLightbox = () => setLightbox(false);
+
   return (
     <Reveal delay={(index % 3) * 80}>
       <article className="group flex flex-col">
-        {/* Image */}
-        <div className="relative aspect-[5/4] overflow-hidden" style={{ background: "#F5EFE3" }}>
-          <div className="absolute inset-2 overflow-hidden">
-            <Image
-              src={work.image}
-              alt={work.title}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-          </div>
+
+        {/* Image container */}
+        <div
+          className="relative aspect-[4/3] cursor-zoom-in overflow-hidden"
+          style={{ background: "#F5EFE3" }}
+          onClick={() => openLightbox(0)}
+        >
+          <Image
+            src={work.image}
+            alt={work.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          />
           {work.badge && (
             <span className="absolute top-3 left-3 z-10 bg-gold px-3 py-1 font-body text-[9px] tracking-[0.2em] text-black uppercase">
               {work.badge}
             </span>
           )}
-          {/* Subtle bottom gradient always visible for readability */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent" />
+          {/* View hint */}
+          <span className="absolute bottom-3 right-3 z-10 bg-black/55 px-2.5 py-1 font-body text-[9px] tracking-[0.18em] text-white-warm uppercase opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            View
+          </span>
+          {/* Multi-image indicator */}
+          {allImages.length > 1 && (
+            <span className="absolute bottom-3 left-3 z-10 bg-black/55 px-2 py-1 font-body text-[9px] text-white-warm">
+              1 / {allImages.length}
+            </span>
+          )}
         </div>
 
         {/* Info */}
@@ -323,6 +345,82 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           </div>
         </div>
       </article>
+
+      {/* ── Lightbox ── */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/92 px-4 py-8 backdrop-blur-sm"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative flex w-full max-w-4xl flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close */}
+            <button
+              onClick={closeLightbox}
+              className="absolute -top-8 right-0 flex items-center gap-1.5 font-body text-[10px] tracking-[0.22em] text-white-warm/60 uppercase transition-colors hover:text-white-warm"
+            >
+              Close <span className="text-base leading-none">✕</span>
+            </button>
+
+            {/* Main image */}
+            <div className="relative h-[55vh] w-full" style={{ background: "#F5EFE3" }}>
+              <Image
+                src={allImages[activeIdx]}
+                alt={`${work.title} — view ${activeIdx + 1}`}
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* Thumbnail strip */}
+            {allImages.length > 1 && (
+              <div className="mt-4 flex gap-2">
+                {allImages.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveIdx(i)}
+                    className={`relative h-16 w-16 overflow-hidden border-2 transition-colors duration-200 ${
+                      i === activeIdx ? "border-gold" : "border-white-warm/20 hover:border-white-warm/50"
+                    }`}
+                    style={{ background: "#F5EFE3" }}
+                  >
+                    <Image
+                      src={img}
+                      alt={`Thumbnail ${i + 1}`}
+                      fill
+                      sizes="64px"
+                      className="object-contain"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Caption */}
+            <div className="mt-5 text-center">
+              <p className="font-display text-xl font-semibold text-white-warm">
+                {work.title}
+              </p>
+              <p className="mt-1 font-body text-[12px] text-white-warm/45">
+                {work.medium}
+              </p>
+              <p className="mt-3 font-display text-lg text-gold">{work.price}</p>
+              <a
+                href={work.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center bg-gold px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors duration-200 hover:bg-gold-lt"
+              >
+                Acquire
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </Reveal>
   );
 }
