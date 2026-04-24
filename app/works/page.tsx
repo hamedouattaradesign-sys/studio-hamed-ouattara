@@ -275,14 +275,16 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
     <Reveal delay={(index % 3) * 80}>
       <article className="group flex flex-col">
         {/* Image */}
-        <div className="relative aspect-[3/4] overflow-hidden" style={{ background: "#161311" }}>
-          <Image
-            src={work.image}
-            alt={work.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          />
+        <div className="relative aspect-[5/4] overflow-hidden" style={{ background: "#F5EFE3" }}>
+          <div className="absolute inset-2 overflow-hidden">
+            <Image
+              src={work.image}
+              alt={work.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          </div>
           {work.badge && (
             <span className="absolute top-3 left-3 z-10 bg-gold px-3 py-1 font-body text-[9px] tracking-[0.2em] text-black uppercase">
               {work.badge}

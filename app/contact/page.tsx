@@ -507,8 +507,12 @@ export default function ContactPage() {
               flag="United States 🇺🇸"
               city="Atlanta, Georgia"
               lines={[
+                "Studio Hamed Ouattara — USA",
+                "3535 South Fulton Avenue",
+                "Studio 101, Hapeville",
+                "Georgia 30354, Atlanta USA",
                 "+1 646 393 6511",
-                "By appointment only",
+                "Available by appointment",
               ]}
               note="North American contact point for collector meetings"
             />
