@@ -72,7 +72,7 @@ const items: PressItem[] = [
     location:    "Venice, Italy",
     title:       "Homo Faber 2026 — Selected Maker",
     description: "Ouattara selected as a featured maker for the biennial Homo Faber event at the Fondazione Giorgio Cini, Venice — Europe's foremost celebration of exceptional craftsmanship and design.",
-    href:        "https://www.homofaberevent.com",
+    href:        "https://homofaber.com",
   },
   {
     category:    "Institutions",
@@ -81,6 +81,7 @@ const items: PressItem[] = [
     location:    "New York, USA",
     title:       "Permanent Collection Acquisition",
     description: "The Brooklyn Museum acquired a major work by Ouattara for its permanent collection (Accession No. 2023.66), marking one of the first acquisitions of West African design in the museum's contemporary holdings.",
+    href:        "https://www.brooklynmuseum.org/exhibitions/breaking_the_mold",
   },
   {
     category:    "Institutions",
@@ -89,6 +90,7 @@ const items: PressItem[] = [
     location:    "Denver, USA",
     title:       "Permanent Collection Acquisition",
     description: "The Denver Art Museum acquired a work from the Bolibana series for its permanent collection, affirming the international institutional standing of Ouattara's practice.",
+    href:        "https://www.denverartmuseum.org/en/object/2023.204",
   },
 
   // ── Press ─────────────────────────────────────────────────────────────────
@@ -144,7 +146,7 @@ const items: PressItem[] = [
     location:    "New York, USA",
     title:       "Bolibana — Solo Exhibition",
     description: "Ouattara's inaugural solo exhibition in New York, presenting the complete Bolibana series of sculptural cabinets to critical and institutional acclaim. Accompanied by a catalogue text by Glenn Adamson.",
-    href:        "https://www.friedmanbenda.com",
+    href:        "https://friedmanbenda.com/artists/hamed-ouattara/",
   },
   {
     category:    "Exhibitions",

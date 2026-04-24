@@ -133,15 +133,15 @@ const pressItems = [
 ];
 
 // ─── Work card ────────────────────────────────────────────────────────────────
-function WorkCard({ work, height }: { work: (typeof works)[0]; height: string }) {
+function WorkCard({ work }: { work: (typeof works)[0] }) {
   return (
-    <div className={`group relative ${height} overflow-hidden`} style={{ background: "#1a1714" }}>
+    <div className="group relative aspect-square overflow-hidden" style={{ background: "#F5EFE3" }}>
       <Image
         src={work.image}
         alt={work.title}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
       />
 
       {work.badge && (
@@ -327,20 +327,20 @@ export default function HomePage() {
         {/* Grid: row 1 = wide (2/3) + normal (1/3); row 2 = three equal */}
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <Reveal className="md:col-span-2">
-            <WorkCard work={works[0]} height="h-[480px]" />
+            <WorkCard work={works[0]} />
           </Reveal>
           <Reveal delay={90}>
-            <WorkCard work={works[1]} height="h-[480px]" />
+            <WorkCard work={works[1]} />
           </Reveal>
 
           <Reveal>
-            <WorkCard work={works[2]} height="h-[350px]" />
+            <WorkCard work={works[2]} />
           </Reveal>
           <Reveal delay={70}>
-            <WorkCard work={works[3]} height="h-[350px]" />
+            <WorkCard work={works[3]} />
           </Reveal>
           <Reveal delay={140}>
-            <WorkCard work={works[4]} height="h-[350px]" />
+            <WorkCard work={works[4]} />
           </Reveal>
         </div>
       </section>
