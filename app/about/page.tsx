@@ -161,7 +161,7 @@ export default function AboutPage() {
             fill
             priority
             className="object-cover object-top"
-            style={{ filter: "grayscale(100%) contrast(1.02) brightness(1.15)" }}
+            style={{ filter: "grayscale(100%) brightness(1.4) contrast(0.95)" }}
           />
           {/* Caption */}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-6 pb-6 pt-12">
