@@ -70,7 +70,7 @@ export default function Nav() {
             href="/works"
             className="inline-flex items-center gap-1 border border-gold px-5 py-2 font-body text-sm tracking-widest text-gold transition-colors duration-200 hover:bg-gold hover:text-white-warm"
           >
-            Collection
+            Shop
           </a>
         </div>
 
