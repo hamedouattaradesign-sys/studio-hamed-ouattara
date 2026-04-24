@@ -105,10 +105,10 @@ export default function AboutPage() {
   return (
     <>
       {/* ════════════════════════════ HERO */}
-      <section className="flex min-h-screen flex-col pt-[72px] md:grid md:grid-cols-[1fr_480px]">
+      <section className="flex flex-col pt-[72px] md:grid md:min-h-screen md:grid-cols-[1fr_480px]">
 
-        {/* Left — dark */}
-        <div className="flex flex-col justify-center bg-black px-8 py-20 md:px-16 md:py-28">
+        {/* Left — dark (below portrait on mobile, left column on desktop) */}
+        <div className="order-2 md:order-none flex flex-col justify-center bg-black px-8 py-16 md:px-16 md:py-28">
           <Reveal>
             <p className="mb-8 font-body text-[10px] tracking-[0.32em] text-gold/70 uppercase">
               Artist &amp; Designer · Studio SHO
@@ -153,8 +153,8 @@ export default function AboutPage() {
           </Reveal>
         </div>
 
-        {/* Right — portrait */}
-        <div className="relative min-h-[480px] bg-[#111] md:min-h-0">
+        {/* Right — portrait (top on mobile, right column on desktop) */}
+        <div className="order-1 md:order-none relative h-[65vh] bg-[#111] md:h-auto md:min-h-0">
           <Image
             src="/images/hamed_portrait.jpg"
             alt="Hamed Ouattara"
