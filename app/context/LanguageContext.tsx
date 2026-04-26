@@ -98,7 +98,7 @@ const T: Record<Lang, Translations> = {
     // Hero
     heroEyebrow:         "Ouagadougou · Atlanta · World",
     heroRole:            "Multidisciplinary Artist & Designer · Burkina Faso",
-    heroDesc:            "Working from Bobo-Dioulasso, Hamed Ouattara upcycles discarded oil drums into Afrofuturist sculptural furniture — forms that carry the geometric memory of Sudano-Sahelian architecture into the present. Each object is produced with a team of fifteen local artisans, bridging ancestral craft and contemporary art.",
+    heroDesc:            "Working from Ouagadougou, Hamed Ouattara upcycles discarded oil drums into Afrofuturist sculptural furniture — forms that carry the geometric memory of Sudano-Sahelian architecture into the present. Each object is produced with a team of fifteen local artisans, bridging ancestral craft and contemporary art.",
     discoverWorks:       "Discover Works",
     collectionsLabel:    "Institutional Collections",
     // Works section
@@ -171,7 +171,7 @@ const T: Record<Lang, Translations> = {
     // Hero
     heroEyebrow:         "Ouagadougou · Atlanta · Monde",
     heroRole:            "Artiste Designer Pluridisciplinaire · Burkina Faso",
-    heroDesc:            "Depuis Bobo-Dioulasso, Hamed Ouattara transforme des fûts de pétrole industriels en mobilier sculptural afrofuturiste — des formes qui portent la mémoire géométrique de l'architecture soudano-sahélienne dans le présent. Chaque objet est produit avec une équipe de quinze artisans locaux, alliant savoir-faire ancestral et art contemporain.",
+    heroDesc:            "Depuis Ouagadougou, Hamed Ouattara transforme des fûts de pétrole industriels en mobilier sculptural afrofuturiste — des formes qui portent la mémoire géométrique de l'architecture soudano-sahélienne dans le présent. Chaque objet est produit avec une équipe de quinze artisans locaux, alliant savoir-faire ancestral et art contemporain.",
     discoverWorks:       "Découvrir les œuvres",
     collectionsLabel:    "Collections Permanentes",
     // Works section

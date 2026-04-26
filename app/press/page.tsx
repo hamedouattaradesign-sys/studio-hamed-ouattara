@@ -118,7 +118,7 @@ const items: PressItem[] = [
     source:      "Design Milk",
     location:    "USA",
     title:       "Inside the Studio of Hamed Ouattara",
-    description: "A studio visit to Bobo-Dioulasso examining the compagnonnage model, the in-house tool fabrication process, and the formal sources of the Bolibana cabinet series.",
+    description: "A studio visit to Ouagadougou examining the compagnonnage model, the in-house tool fabrication process, and the formal sources of the Bolibana cabinet series.",
     href:        "https://design-milk.com",
   },
   {

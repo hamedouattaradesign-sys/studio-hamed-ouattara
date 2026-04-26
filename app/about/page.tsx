@@ -65,7 +65,7 @@ const collections = [
 
 const timeline = [
   { year: "1971", event: "Born in Ouagadougou, Burkina Faso" },
-  { year: "2002", event: "Founded Studio SHO in Bobo-Dioulasso" },
+  { year: "2002", event: "Founded Studio SHO in Ouagadougou" },
   { year: "2003", event: "Diploma, ENSCI – Les Ateliers, Paris" },
   { year: "2014", event: "Africa Design Award, Johannesburg" },
   { year: "2014", event: "Chevalier de l'Ordre du mérite des Arts, Burkina Faso" },
@@ -84,7 +84,7 @@ const studioStats = [
 ];
 
 const bioParas = [
-  `Hamed Ouattara (b. 1971, Ouagadougou, Burkina Faso) is a multidisciplinary artist and designer whose practice centres on the transformation of discarded industrial oil drums into sculptural furniture of singular formal intelligence. Trained at ENSCI – Les Ateliers, Paris (diploma 2003), Ouattara returned to West Africa to found Studio SHO in Bobo-Dioulasso in 2002, establishing a production model rooted in the compagnonnage tradition — a collective apprenticeship through which knowledge is transmitted from master to practitioner across generations.`,
+  `Hamed Ouattara (b. 1971, Ouagadougou, Burkina Faso) is a multidisciplinary artist and designer whose practice centres on the transformation of discarded industrial oil drums into sculptural furniture of singular formal intelligence. Trained at ENSCI – Les Ateliers, Paris (diploma 2003), Ouattara returned to West Africa to found Studio SHO in Ouagadougou in 2002, establishing a production model rooted in the compagnonnage tradition — a collective apprenticeship through which knowledge is transmitted from master to practitioner across generations.`,
   `His objects draw explicitly from the geometric vocabulary of Sudano-Sahelian architecture: the flat-roofed mud-brick compounds, the tapering buttresses, the repeating triangular corbels of mosques from Djenné to Bobo-Dioulasso. Ouattara reads the oil drum — ubiquitous throughout sub-Saharan Africa as a vessel of petroleum dependency — as a material charged with geopolitical meaning. By reworking it into furniture that occupies museums and private collections, he proposes an act of reclamation: turning the emblem of extraction into an object of cultural sovereignty.`,
   `The formal language Ouattara deploys has been described as Afrofuturist, though he resists easy categorisation. His cabinets, chairs and stools operate simultaneously as sculpture, as functional object, and as archive — each surface pattern referencing a specific cultural or architectural source, each title anchoring the work to a specific place, community or memory within Burkina Faso.`,
   `Ouattara's work is held in the permanent collections of the Brooklyn Museum (New York), the Denver Art Museum, the Vitra Design Museum (Weil am Rhein), the Centre Pompidou (Paris), and the V&A Museum (London). He is exclusively represented internationally by Friedman Benda Gallery, New York, where his solo exhibition Bolibana was presented in 2023.`,
@@ -296,9 +296,9 @@ export default function AboutPage() {
           {/* Left — description */}
           <div className="space-y-6">
             {[
-              `Studio SHO operates on a compagnonnage model — a form of craft transmission rooted in the French guild tradition — adapted to the context of Bobo-Dioulasso. Each of the fifteen artisans who make up the studio is both practitioner and student, mastering the full production chain of an object from raw material to finished piece.`,
+              `Studio SHO operates on a compagnonnage model — a form of craft transmission rooted in the French guild tradition — adapted to the context of Ouagadougou. Each of the fifteen artisans who make up the studio is both practitioner and student, mastering the full production chain of an object from raw material to finished piece.`,
               `All tools used in the studio are fabricated in-house, reinforcing a philosophy of sovereign production: the studio does not depend on imported equipment, industrial supply chains, or external finishing processes. Every decision, from the sourcing of reclaimed oil drums to the final application of powder coat, remains within the control of the collective.`,
-              `This model produces objects of extraordinary precision and consistency — but also ensures that knowledge remains embedded in Bobo-Dioulasso, building technical capacity that outlasts any single commission or exhibition cycle.`,
+              `This model produces objects of extraordinary precision and consistency — but also ensures that knowledge remains embedded in Ouagadougou, building technical capacity that outlasts any single commission or exhibition cycle.`,
             ].map((para, i) => (
               <Reveal key={i} delay={i * 70}>
                 <p className="font-body text-[14px] leading-[1.9] text-mid">{para}</p>

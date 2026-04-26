@@ -407,7 +407,7 @@ export default function HomePage() {
                 Sudano-Sahelian architecture.
               </p>
               <p className="mb-10 font-body text-[14px] leading-[1.85] text-white-warm/60">
-                Working with a team of fifteen artisans in Bobo-Dioulasso, his
+                Working with a team of fifteen artisans in Ouagadougou, his
                 pieces have entered the collections of the Brooklyn Museum, Vitra
                 Design Museum, Denver Art Museum, and the Centre Pompidou Paris.
                 He is represented internationally by Friedman Benda, New York.
