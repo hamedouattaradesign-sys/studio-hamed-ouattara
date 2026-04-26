@@ -102,7 +102,7 @@ const items: PressItem[] = [
     location:    "International",
     title:       "Hamed Ouattara: Turning Oil Drums into Cultural Memory",
     description: "A feature on Ouattara's practice and the forthcoming COME BACK exhibition at the Musée National du Burkina Faso, tracing his method of material reclamation and its political dimensions.",
-    href:        "https://artdaily.com",
+    href:        "https://artdaily.com/news/162250/Multidisciplinary-artist-Hamed-Ouattara-now-on-view-at-Friedman-Benda",
   },
   {
     category:    "Press",
