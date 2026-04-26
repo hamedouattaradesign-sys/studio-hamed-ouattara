@@ -124,11 +124,11 @@ const items: PressItem[] = [
   {
     category:    "Press",
     year:        "2023",
-    source:      "Architectural Digest",
-    location:    "USA",
+    source:      "Architectural Digest Middle East",
+    location:    "Middle East & International",
     title:       "The Designers Redefining African Craft",
     description: "Ouattara featured among a cohort of designers whose work challenges received narratives about African craft — foregrounding the conceptual rigour and formal sophistication of his oil drum furniture.",
-    href:        "https://architecturaldigest.com",
+    href:        "https://www.admiddleeast.com/story/22-african-artists-confront-colonial-violence-in-new-exhibition",
   },
   {
     category:    "Press",
