@@ -401,7 +401,7 @@ export default function HomePage() {
                 {t.biographyLabel}
               </p>
               <p className="mb-5 font-body text-[14px] leading-[1.85] text-white-warm/60">
-                Hamed Ouattara (b. 1979, Bobo-Dioulasso, Burkina Faso) transforms
+                Hamed Ouattara (b. 1971, Ouagadougou, Burkina Faso) transforms
                 discarded oil drums into sculptural furniture that bridges
                 Afrofuturist aesthetics with the geometric vocabulary of
                 Sudano-Sahelian architecture.
