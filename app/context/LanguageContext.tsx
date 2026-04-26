@@ -29,6 +29,7 @@ export type Translations = {
 
   // ─── Home — exhibition banner ─────────────────────────────────────────────
   currentExhibition:   string;
+  learnMore:           string;
 
   // ─── Home — about strip ───────────────────────────────────────────────────
   biographyLabel:      string;
@@ -109,6 +110,7 @@ const T: Record<Lang, Translations> = {
     acquire:             "Acquire",
     // Exhibition
     currentExhibition:   "Current Exhibition",
+    learnMore:           "Learn more",
     // About strip
     biographyLabel:      "Biography",
     fullBio:             "Full Biography →",
@@ -182,6 +184,7 @@ const T: Record<Lang, Translations> = {
     acquire:             "Acquérir",
     // Exhibition
     currentExhibition:   "Exposition en cours",
+    learnMore:           "En savoir plus",
     // About strip
     biographyLabel:      "Biographie",
     fullBio:             "Biographie complète →",
@@ -255,6 +258,7 @@ const T: Record<Lang, Translations> = {
     acquire:             "购买",
     // Exhibition
     currentExhibition:   "当前展览",
+    learnMore:           "了解更多",
     // About strip
     biographyLabel:      "艺术家简介",
     fullBio:             "完整简介 →",

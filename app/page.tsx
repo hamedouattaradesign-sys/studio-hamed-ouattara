@@ -361,8 +361,16 @@ export default function HomePage() {
           <div className="mx-auto mt-7 w-12 border-t border-black/20" />
           <p className="mt-7 font-body text-[11px] tracking-[0.2em] text-black/60 uppercase">
             Musée National du Burkina Faso &nbsp;·&nbsp; Ouagadougou
-            &nbsp;·&nbsp; Until June 15, 2026
+            &nbsp;·&nbsp; Until May 15, 2026
           </p>
+          <a
+            href="https://web.facebook.com/share/p/1JPbdBrXka/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-block border border-black/30 px-8 py-3 font-body text-[11px] tracking-[0.2em] text-black uppercase transition-colors duration-200 hover:bg-black hover:text-gold"
+          >
+            {t.learnMore}
+          </a>
         </section>
       </Reveal>
 
