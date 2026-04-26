@@ -278,26 +278,41 @@ function Reveal({
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work, index }: { work: Work; index: number }) {
   const { t }                     = useLanguage();
-  const [lightbox, setLightbox]   = useState(false);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [lightbox, setLightbox]       = useState(false);
+  const [activeIdx, setActiveIdx]     = useState(0);
+  const [inquireOpen, setInquireOpen] = useState(false);
+  const [form, setForm]               = useState({ name: "", email: "", phone: "", message: `I am interested in ${work.title}` });
   const allImages = [work.image, ...(work.images ?? [])];
+  const isInquiry = parseInt(work.price.replace(/[$,]/g, ""), 10) > 10000;
 
   const open  = (i = 0) => { setActiveIdx(i); setLightbox(true); };
   const close = ()      => setLightbox(false);
   const prev  = ()      => setActiveIdx((i) => (i - 1 + allImages.length) % allImages.length);
   const next  = ()      => setActiveIdx((i) => (i + 1) % allImages.length);
 
-  // Escape key + body scroll lock
+  function handleInquire(e: React.FormEvent) {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Inquiry — ${work.title}`);
+    const body    = encodeURIComponent(
+      `Full Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || "—"}\n\nMessage:\n${form.message}`
+    );
+    window.open(`mailto:studiohamedouattarabf@gmail.com?subject=${subject}&body=${body}`);
+    setInquireOpen(false);
+  }
+
+  // Escape key + body scroll lock for lightbox and inquiry modal
   useEffect(() => {
-    if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    if (!lightbox && !inquireOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { if (lightbox) close(); else setInquireOpen(false); }
+    };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [lightbox]);
+  }, [lightbox, inquireOpen]);
 
   return (
     <Reveal delay={(index % 3) * 80}>
@@ -343,14 +358,23 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           <p className="mt-0.5 font-body text-[10px] text-mid/55">{work.reference}</p>
           <div className="mt-4 flex items-center justify-between border-t border-black/8 pt-4">
             <span className="font-display text-[1.05rem] font-semibold text-black">{work.price}</span>
-            <a
-              href={work.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
-            >
-              {t.acquire}
-            </a>
+            {isInquiry ? (
+              <button
+                onClick={() => setInquireOpen(true)}
+                className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
+              >
+                Inquire
+              </button>
+            ) : (
+              <a
+                href={work.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
+              >
+                Acquire →
+              </a>
+            )}
           </div>
         </div>
       </article>
@@ -444,15 +468,99 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
               <p className="font-display text-xl font-semibold text-white">{work.title}</p>
               <p className="mt-1 font-body text-[11px] text-white/40">{work.medium}</p>
               <p className="mt-2 font-display text-base text-[#C8973A]">{work.price}</p>
-              <a
-                href={work.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center bg-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors hover:bg-[#E0B96A]"
-              >
-                Acquire
-              </a>
+              {isInquiry ? (
+                <button
+                  onClick={() => { close(); setInquireOpen(true); }}
+                  className="mt-4 inline-flex items-center bg-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors hover:bg-[#E0B96A]"
+                >
+                  Inquire
+                </button>
+              ) : (
+                <a
+                  href={work.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center bg-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors hover:bg-[#E0B96A]"
+                >
+                  Acquire →
+                </a>
+              )}
             </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ── Inquiry modal ────────────────────────────────────────────────────── */}
+      {inquireOpen && createPortal(
+        <div
+          style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(8,7,6,0.85)" }}
+          onClick={() => setInquireOpen(false)}
+        >
+          <div
+            className="absolute left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 bg-white-warm p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-6 flex items-start justify-between">
+              <div>
+                <p className="font-body text-[9px] tracking-[0.25em] text-gold uppercase">Inquiry</p>
+                <h2 className="mt-1 font-display text-xl font-semibold text-black">{work.title}</h2>
+              </div>
+              <button
+                onClick={() => setInquireOpen(false)}
+                aria-label="Close"
+                className="text-xl leading-none text-mid hover:text-black"
+              >
+                ✕
+              </button>
+            </div>
+            <form onSubmit={handleInquire} className="space-y-4">
+              <div>
+                <label className="mb-1 block font-body text-[10px] tracking-[0.18em] text-mid uppercase">Full Name *</label>
+                <input
+                  required
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))}
+                  className="w-full border border-black/15 bg-transparent px-3 py-2.5 font-body text-[13px] text-black outline-none focus:border-gold"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block font-body text-[10px] tracking-[0.18em] text-mid uppercase">Email *</label>
+                <input
+                  required
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
+                  className="w-full border border-black/15 bg-transparent px-3 py-2.5 font-body text-[13px] text-black outline-none focus:border-gold"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block font-body text-[10px] tracking-[0.18em] text-mid uppercase">Phone (optional)</label>
+                <input
+                  type="tel"
+                  value={form.phone}
+                  onChange={(e) => setForm(f => ({ ...f, phone: e.target.value }))}
+                  className="w-full border border-black/15 bg-transparent px-3 py-2.5 font-body text-[13px] text-black outline-none focus:border-gold"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block font-body text-[10px] tracking-[0.18em] text-mid uppercase">Message *</label>
+                <textarea
+                  required
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
+                  className="w-full resize-none border border-black/15 bg-transparent px-3 py-2.5 font-body text-[13px] text-black outline-none focus:border-gold"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-gold py-3 font-body text-[11px] tracking-[0.2em] text-black uppercase transition-colors hover:bg-gold-lt"
+              >
+                Send Inquiry
+              </button>
+            </form>
           </div>
         </div>,
         document.body
