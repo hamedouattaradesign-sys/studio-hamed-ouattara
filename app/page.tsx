@@ -167,14 +167,20 @@ function WorkCard({ work }: { work: (typeof works)[0] }) {
         </h3>
         <p className="mb-4 font-body text-[11px] text-white-warm/50">{work.medium}</p>
         <div className="flex items-center justify-between">
-          <span className="font-display text-lg text-white-warm">{work.price}</span>
+          {work.badge === "Brooklyn Museum" ? (
+            <span className="font-body text-[11px] tracking-[0.18em] text-gold uppercase">Museum Collection</span>
+          ) : work.badge === "Homo Faber 2026" ? (
+            <span className="font-body text-[11px] tracking-[0.18em] text-gold uppercase">Homo Faber 2026</span>
+          ) : (
+            <span />
+          )}
           <a
             href={work.href}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gold px-5 py-2 font-body text-[11px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
           >
-            Acquire
+            Acquire →
           </a>
         </div>
       </div>
