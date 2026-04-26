@@ -281,7 +281,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
   const [lightbox, setLightbox]       = useState(false);
   const [activeIdx, setActiveIdx]     = useState(0);
   const [inquireOpen, setInquireOpen] = useState(false);
-  const [form, setForm]               = useState({ name: "", email: "", phone: "", message: `I am interested in ${work.title}` });
+  const [form, setForm]               = useState({ name: "", email: "", phone: "", message: `I am interested in ${work.title} from the ${work.collection} collection.` });
   const allImages = [work.image, ...(work.images ?? [])];
   const isInquiry = parseInt(work.price.replace(/[$,]/g, ""), 10) > 10000;
 
@@ -320,17 +320,20 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 
         {/* Image container */}
         <div
-          className="relative aspect-[4/3] cursor-zoom-in overflow-hidden"
-          style={{ background: "#F5EFE3" }}
+          className="relative cursor-zoom-in overflow-hidden"
+          style={{ aspectRatio: "4/5", background: "#FFFFFF" }}
           onClick={() => open(0)}
         >
-          <Image
-            src={work.image}
-            alt={work.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          />
+          {/* 20 px white mat */}
+          <div className="absolute inset-5">
+            <Image
+              src={work.image}
+              alt={work.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+          </div>
           {work.badge && (
             <span className="absolute top-3 left-3 z-10 bg-gold px-3 py-1 font-body text-[9px] tracking-[0.2em] text-black uppercase">
               {work.badge}
@@ -356,24 +359,26 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           </h3>
           <p className="mt-1 font-body text-[11px] leading-relaxed text-mid">{work.medium}</p>
           <p className="mt-0.5 font-body text-[10px] text-mid/55">{work.reference}</p>
-          <div className="mt-4 flex items-center justify-between border-t border-black/8 pt-4">
-            <span className="font-display text-[1.05rem] font-semibold text-black">{work.price}</span>
+          <div className="mt-4 border-t border-black/8 pt-4">
             {isInquiry ? (
               <button
                 onClick={() => setInquireOpen(true)}
-                className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
+                className="w-full border border-gold px-4 py-2.5 font-body text-[10px] tracking-[0.18em] text-gold uppercase transition-colors duration-200 hover:bg-gold hover:text-black"
               >
-                Inquire
+                Inquire about this work
               </button>
             ) : (
-              <a
-                href={work.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
-              >
-                Acquire →
-              </a>
+              <div className="flex items-center justify-between">
+                <span className="font-display text-[1.05rem] font-semibold text-gold">{work.price}</span>
+                <a
+                  href={work.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gold px-4 py-1.5 font-body text-[10px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
+                >
+                  Acquire →
+                </a>
+              </div>
             )}
           </div>
         </div>
@@ -421,7 +426,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
               {/* Main image */}
               <div
                 className="relative flex-1"
-                style={{ height: "58vh", background: "#F5EFE3" }}
+                style={{ height: "58vh", background: "#FFFFFF" }}
               >
                 <Image
                   src={allImages[activeIdx]}
@@ -452,7 +457,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
                   <button
                     key={i}
                     onClick={() => setActiveIdx(i)}
-                    style={{ background: "#F5EFE3" }}
+                    style={{ background: "#FFFFFF" }}
                     className={`relative h-14 w-14 overflow-hidden border-2 transition-colors duration-200 ${
                       i === activeIdx ? "border-[#C8973A]" : "border-white/15 hover:border-white/40"
                     }`}
@@ -467,13 +472,15 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
             <div className="text-center">
               <p className="font-display text-xl font-semibold text-white">{work.title}</p>
               <p className="mt-1 font-body text-[11px] text-white/40">{work.medium}</p>
-              <p className="mt-2 font-display text-base text-[#C8973A]">{work.price}</p>
+              {!isInquiry && (
+                <p className="mt-2 font-display text-base text-[#C8973A]">{work.price}</p>
+              )}
               {isInquiry ? (
                 <button
                   onClick={() => { close(); setInquireOpen(true); }}
-                  className="mt-4 inline-flex items-center bg-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-black transition-colors hover:bg-[#E0B96A]"
+                  className="mt-4 inline-flex items-center border border-[#C8973A] px-8 py-2.5 font-body text-[11px] tracking-[0.2em] text-[#C8973A] uppercase transition-colors hover:bg-[#C8973A] hover:text-black"
                 >
-                  Inquire
+                  Inquire about this work
                 </button>
               ) : (
                 <a

@@ -104,7 +104,7 @@ const T: Record<Lang, Translations> = {
     collectionsLabel:    "Institutional Collections",
     // Works section
     portfolioLabel:      "Portfolio",
-    worksTitle:          "Featured Works",
+    worksTitle:          "Selected Works",
     worksSubtitle:       "Upcycled industrial objects as cultural form",
     viewAllWorks:        "View All Works ↗",
     acquire:             "Acquire",

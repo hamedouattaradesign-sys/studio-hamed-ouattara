@@ -136,55 +136,35 @@ const pressItems = [
 // ─── Work card ────────────────────────────────────────────────────────────────
 function WorkCard({ work }: { work: (typeof works)[0] }) {
   return (
-    <div
-      className="group relative overflow-hidden"
-      style={{ aspectRatio: "4/3", backgroundColor: "#F5EFE3", display: "flex", alignItems: "center", justifyContent: "center", padding: "12px" }}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={work.image}
-        alt={work.title}
-        style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.7s ease" }}
-        className="group-hover:scale-[1.03]"
-      />
-
-      {work.badge && (
-        <span className="absolute top-4 left-4 z-10 bg-gold px-3 py-1 font-body text-[10px] tracking-[0.18em] text-black uppercase">
-          {work.badge}
-        </span>
-      )}
-
-      {/* Gradient + overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-      {/* Info panel */}
-      <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="mb-1 font-body text-[10px] tracking-[0.22em] text-gold uppercase">
+    <article className="group">
+      <div
+        className="overflow-hidden"
+        style={{ aspectRatio: "4/5", backgroundColor: "#FFFFFF", padding: "20px" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={work.image}
+          alt={work.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            objectPosition: "center",
+            transition: "transform 0.6s ease",
+          }}
+          className="group-hover:scale-[1.02]"
+        />
+      </div>
+      <div className="mt-4 px-0.5">
+        <p className="mb-1 font-body text-[9px] tracking-[0.28em] text-gold uppercase">
           {work.collection}
         </p>
-        <h3 className="mb-0.5 font-display text-[1.2rem] font-semibold leading-tight text-white-warm">
+        <h3 className="font-display text-[1.05rem] font-semibold leading-snug text-black">
           {work.title}
         </h3>
-        <p className="mb-4 font-body text-[11px] text-white-warm/50">{work.medium}</p>
-        <div className="flex items-center justify-between">
-          {work.badge === "Brooklyn Museum" ? (
-            <span className="font-body text-[11px] tracking-[0.18em] text-gold uppercase">Museum Collection</span>
-          ) : work.badge === "Homo Faber 2026" ? (
-            <span className="font-body text-[11px] tracking-[0.18em] text-gold uppercase">Homo Faber 2026</span>
-          ) : (
-            <span />
-          )}
-          <a
-            href={work.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gold px-5 py-2 font-body text-[11px] tracking-[0.18em] text-black transition-colors duration-200 hover:bg-gold-lt"
-          >
-            Acquire →
-          </a>
-        </div>
+        <p className="mt-1 font-body text-[11px] text-mid/60">{work.medium}</p>
       </div>
-    </div>
+    </article>
   );
 }
 
