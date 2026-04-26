@@ -193,25 +193,6 @@ export default function AboutPage() {
           {/* Left — sticky pull quote + collections */}
           <div className="md:sticky md:top-[140px] md:self-start">
             <Reveal>
-              <blockquote className="mb-12">
-                <span className="mb-4 block font-display text-4xl leading-none text-gold">
-                  &ldquo;
-                </span>
-                <p className="font-display text-[1.1rem] italic leading-[1.7] text-black">
-                  This material reflects the economic dependency of the country
-                  and its relationship with the rest of the world. By integrating
-                  it into my creations, I elevate it — give it a more noble life.
-                </p>
-                <footer className="mt-6 border-t border-gold/25 pt-5">
-                  <p className="font-body text-[10px] tracking-[0.22em] text-gold uppercase">
-                    Hamed Ouattara
-                  </p>
-                  <p className="mt-1 font-body text-[11px] text-mid/60">
-                    Friedman Benda, New York
-                  </p>
-                </footer>
-              </blockquote>
-
               <p className="mb-5 font-body text-[10px] tracking-[0.25em] text-gold uppercase">
                 {t.permanentCollections}
               </p>
